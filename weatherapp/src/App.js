@@ -25,8 +25,12 @@ function App() {
 
 
   function parseDate(days){
-    const date = new Date()
-    return date.getDay() + '/' + date.getMonth() + '/' + date.getFullYear() 
+    const today = new Date()
+    const tomorrow = new Date(today)
+    tomorrow.setDate(tomorrow.getDate() + days)
+    const daysArray = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    const day = daysArray[tomorrow.getDay()]
+    return day
   }
     
     
