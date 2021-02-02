@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Card from './components/Card.js'
 
-const API = {
+const WeatherAPI = {
   base: 'http://api.openweathermap.org/data/2.5/',
   key: '21c727b82e39eaf08a1df25f0e24b30e'
-
 }
+
 
 function App() {
   const [query, setQuery] = useState('');
@@ -13,7 +13,7 @@ function App() {
 
   const search = event => {
     if (event.key === "Enter") {
-      fetch(`${API.base}forecast?q=${query}&cnt=7&units=metric&appid=${API.key}`)
+      fetch(`${WeatherAPI.base}forecast?q=${query}&cnt=7&units=metric&appid=${WeatherAPI.key}`)
         .then(res => res.json())
         .then(weather => {
           console.log(weather);
@@ -24,6 +24,8 @@ function App() {
   }
 
 
+
+
   function parseDate(days){
     const today = new Date()
     const tomorrow = new Date(today)
@@ -32,7 +34,8 @@ function App() {
     const day = daysArray[tomorrow.getDay()]
     return day
   }
-    
+  
+
     
 
   return (
@@ -62,7 +65,7 @@ function App() {
                     date="Tomorrow"
                     temperature={Math.round(weather.list[1].main.temp) + " °C"}
                     imageUrl={"http://openweathermap.org/img/wn/"+weather.list[1].weather[0].icon+"@2x.png"}
-                    weather={weather.list[1].weather[0].main} 
+                    weather={weather.list[1].weather[0].main}
                     />   
                 <Card
                     date={parseDate(2)}                    
